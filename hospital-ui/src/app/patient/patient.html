@@ -1,0 +1,75 @@
+<div class="container mt-5">
+
+  <h2 class="text-center mb-4">Hospital Management System</h2>
+
+  <!-- Patient Form -->
+  <div class="card shadow p-4 mb-4">
+    <h4>{{ editMode ? 'Edit Patient' : 'Add Patient' }}</h4>
+
+    <div class="mb-3">
+      <input type="text" class="form-control"
+             placeholder="Enter Name"
+             [(ngModel)]="patient.name">
+    </div>
+
+    <div class="mb-3">
+      <input type="number" class="form-control"
+             placeholder="Enter Age"
+             [(ngModel)]="patient.age">
+    </div>
+
+    <div class="mb-3">
+      <input type="text" class="form-control"
+             placeholder="Enter Disease"
+             [(ngModel)]="patient.disease">
+    </div>
+
+    <button class="btn btn-primary me-2"
+            (click)="savePatient()">
+      {{ editMode ? 'Update' : 'Add' }}
+    </button>
+
+    <button class="btn btn-secondary"
+            (click)="resetForm()">
+      Clear
+    </button>
+  </div>
+
+  <!-- Patient Table -->
+  <div class="card shadow p-3">
+    <h4 class="mb-3">Patient List</h4>
+
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Disease</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let p of patients">
+          <td>{{ p.id }}</td>
+          <td>{{ p.name }}</td>
+          <td>{{ p.age }}</td>
+          <td>{{ p.disease }}</td>
+          <td>
+            <button class="btn btn-warning btn-sm me-2"
+                    (click)="editPatient(p)">
+              Edit
+            </button>
+
+            <button class="btn btn-danger btn-sm"
+                    (click)="deletePatient(p.id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
